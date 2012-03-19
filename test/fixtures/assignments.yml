@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  worker: 
+  project: 
+  from_week: 
+  from_year: 
+  days_per_week: 
+
+two:
+  worker: 
+  project: 
+  from_week: 
+  from_year: 
+  days_per_week: 
