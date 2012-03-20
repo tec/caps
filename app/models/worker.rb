@@ -6,8 +6,7 @@ class Worker < ActiveRecord::Base
   def get_availability year, week
     Availability.
       where( :worker_id => self.id ).
-      where( "from_year <= ?", year ).
-      where( "from_week <= ?", week ).
+      where( "from_year < ? or (from_year = ? AND from_week <= ?)", year, year, week ).
       order( :from_year, :from_week ).
       last
   end
