@@ -1,15 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  worker: silvan
   project: rails
+  days_per_week: 2
   from_week: 1
   from_year: 2011
-  days_per_week: 2
 
 two:
-  worker: tino
-  project: symfony
+  project: rails
+  days_per_week: 3
   from_week: 1
   from_year: 2012
-  days_per_week: 4

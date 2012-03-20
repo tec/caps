@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
+rails:
+  name: Rails App
 
-two:
-  name: MyString
+sling:
+  name: Sling Server
+
+symfony:
+  name: Symfony Project
