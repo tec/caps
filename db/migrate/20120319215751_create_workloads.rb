@@ -1,6 +1,6 @@
-class CreateProjectWorkloads < ActiveRecord::Migration
+class CreateWorkloads < ActiveRecord::Migration
   def change
-    create_table :project_workloads do |t|
+    create_table :workloads do |t|
       t.references :project
       t.integer :days_per_week
       t.integer :from_week
@@ -8,6 +8,6 @@ class CreateProjectWorkloads < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :project_workloads, :project_id
+    add_index :workloads, :project_id
   end
 end
