@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class WorkerAvailabilityTest < ActiveSupport::TestCase
+class WorkloadTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

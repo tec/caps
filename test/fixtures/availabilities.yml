@@ -25,12 +25,18 @@ four:
   from_year: 2012
 
 five:
+  worker: silvan
+  days_per_week: 5
+  from_week: 30
+  from_year: 2012
+
+six:
   worker: tino
   days_per_week: 5
   from_week: 1
   from_year: 2012
 
-six:
+seven:
   worker: tino
   days_per_week: 5
   from_week: 2
