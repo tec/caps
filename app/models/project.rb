@@ -9,4 +9,12 @@ class Project < ActiveRecord::Base
       order( :from_year, :from_week ).
       last
   end
+  def get_assignment worker, year, week
+    worker.get_assignment self, year, week
+  end
+  def get_assignments year, week
+    Worker.all.map do |worker|
+      self.get_assignment( worker, year, week)
+    end
+  end
 end
