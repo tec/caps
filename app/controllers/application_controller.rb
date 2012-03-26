@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  respond_to :json
+  respond_to :html, :json
 
   def index
     @workers = Worker.get_available_days params[:year], params[:week]

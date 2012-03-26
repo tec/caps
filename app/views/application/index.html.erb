@@ -1,0 +1,25 @@
+<table>
+    <tr>
+      <td></td>
+      <td></td>
+      <% @assignments.first[:assignments].each do |cell| %>
+        <td><%= @projects[cell[:project_id]][:name] %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <% @assignments.first[:assignments].each do |cell| %>
+        <td><%= @projects[cell[:project_id]][:workload] %></td>
+      <% end %>
+    </tr>
+  <% @assignments.each do |row| %>
+    <tr>
+      <td><%= @workers[row[:worker_id]][:name] %></td>
+      <td><%= @workers[row[:worker_id]][:availability] %></td>
+      <% row[:assignments].each do |cell| %>
+        <td><%= cell[:assignments] %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
