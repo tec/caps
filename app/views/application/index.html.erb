@@ -1,25 +1,26 @@
 <table>
+  <tr>
+    <td></td>
+    <td></td>
+    <% @projects.each do |project| %>
+      <td><%= project.name %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <% @projects.each do |project| %>
+      <td><%= project.get_work_days @year, @week %></td>
+    <% end %>
+  </tr>
+  <% @workers.each do |worker| %>
     <tr>
-      <td></td>
-      <td></td>
-      <% @assignments.first[:assignments].each do |cell| %>
-        <td><%= @projects[cell[:project_id]][:name] %></td>
-      <% end %>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <% @assignments.first[:assignments].each do |cell| %>
-        <td><%= @projects[cell[:project_id]][:workload] %></td>
-      <% end %>
-    </tr>
-  <% @assignments.each do |row| %>
-    <tr>
-      <td><%= @workers[row[:worker_id]][:name] %></td>
-      <td><%= @workers[row[:worker_id]][:availability] %></td>
-      <% row[:assignments].each do |cell| %>
-        <td><%= cell[:assignments] %></td>
+      <td><%= worker.name %></td>
+      <td><%= worker.get_available_days @year, @week %></td>
+      <% @projects.each do |project| %>
+        <td><%= @assignments[worker][project] %></td>
       <% end %>
     </tr>
   <% end %>
 </table>
+
