@@ -3,7 +3,17 @@ class ApplicationController < ActionController::Base
   
   respond_to :html, :json
 
-  def index
+  def abbr
+    abbr = params[:abbr]
+    date = DateTime.now
+
+    date = date + 1.week if abbr=='next'
+    date = date - 1.week if abbr=='last'
+
+    redirect_to date_path :week => date.cweek, :year => date.year, :format => params[:format]
+  end
+
+  def date
     @year = params[:year]
     @week = params[:week]
     @workers = Worker.all

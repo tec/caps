@@ -56,7 +56,13 @@ CapacityPlanning::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
   
-  match ':year/:week(.:format)' => "application#index",
-    :constraints => { :year => /\d{4}/, :week => /\d{1,2}/},
-    :as => "date"
+  match ':year/:week(.:format)' => "application#date",
+    :constraints => { :year => /\d{4}/, :week => /\d{1,2}/ },
+    :as => "date",
+    :via => :get,
+    :defaults => { :format => 'html' }
+  match ':abbr(.:format)' => "application#abbr",
+    :constraints => { :abbr => /last|current|next/ },
+    :via => :get,
+    :defaults => { :format => 'html' }
 end
