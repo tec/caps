@@ -1,26 +1,32 @@
 <table>
   <tr>
     <td></td>
-    <td></td>
     <% @projects.each do |project| %>
       <td><%= project.name %></td>
     <% end %>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <% @projects.each do |project| %>
-      <td><%= project.get_work_days @year, @week %></td>
-    <% end %>
+    <td>Total Assignments / Availability</td>
   </tr>
   <% @workers.each do |worker| %>
     <tr>
       <td><%= worker.name %></td>
-      <td><%= worker.get_available_days @year, @week %></td>
       <% @projects.each do |project| %>
         <td><%= @assignments[worker][project] %></td>
       <% end %>
+      <td>
+        <%= @projects.inject(0){|sum,project| sum + @assignments[worker][project]} %>/
+        <%= worker.get_available_days @year, @week %>
+      </td>
     </tr>
   <% end %>
+  <tr>
+    <td>Total Assignments / Workload</td>
+    <% @projects.each do |project| %>
+      <td>
+        <%= @workers.inject(0){|sum,worker| sum + @assignments[worker][project]} %>/
+        <%= project.get_work_days @year, @week %>
+      </td>
+    <% end %>
+    <td></td>
+  </tr>
 </table>
 
