@@ -10,10 +10,13 @@
     <tr>
       <td><%= worker.name %></td>
       <% @projects.each do |project| %>
-        <td><%= @assignments[worker][project] %></td>
+        <td>
+          <%= @assignment_days[worker][project] %>
+          <%= render "assignments/form_days_only", :assignment => @assignments[worker][project] %>
+        </td>
       <% end %>
       <td>
-        <%= @projects.inject(0){|sum,project| sum + @assignments[worker][project]} %>/
+        <%= @projects.inject(0){|sum,project| sum + @assignment_days[worker][project]} %>/
         <%= worker.get_available_days @year, @week %>
       </td>
     </tr>
@@ -22,7 +25,7 @@
     <td>Total Assignments / Workload</td>
     <% @projects.each do |project| %>
       <td>
-        <%= @workers.inject(0){|sum,worker| sum + @assignments[worker][project]} %>/
+        <%= @workers.inject(0){|sum,worker| sum + @assignment_days[worker][project]} %>/
         <%= project.get_work_days @year, @week %>
       </td>
     <% end %>

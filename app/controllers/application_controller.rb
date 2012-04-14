@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
     @week = params[:week]
     @workers = Worker.all
     @projects = Project.all
-    @assignments = Assignment.get_assignment_table @year, @week
+    @assignment_days = Assignment.get_assignment_days @year, @week
+    @assignments = Assignment.get_assignments @year, @week
   end
 end
