@@ -1,0 +1,10 @@
+(function(){
+  worker  = <%= @assignment.worker_id %>;
+  project = <%= @assignment.project_id %>;
+  days    = <%= @assignment.days_per_week %>;
+
+  label_id = '#w' + worker + '_p' + project + '_label';
+  form_id  = '#w' + worker + '_p' + project + '_form';
+
+  $(label_id).html(days);
+})();

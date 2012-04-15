@@ -46,9 +46,11 @@ class AssignmentsController < ApplicationController
       if @assignment.save
         format.html { redirect_to @assignment, notice: 'Assignment was successfully created.' }
         format.json { render json: @assignment, status: :created, location: @assignment }
+        format.js 
       else
         format.html { render action: "new" }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }
+        format.js{ render json: @assignment.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,9 +64,11 @@ class AssignmentsController < ApplicationController
       if @assignment.update_attributes(params[:assignment])
         format.html { redirect_to @assignment, notice: 'Assignment was successfully updated.' }
         format.json { head :no_content }
+        format.js 
       else
         format.html { render action: "edit" }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }
+        format.js { render json: @assignment.errors, status: :unprocessable_entity }
       end
     end
   end

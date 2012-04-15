@@ -6,9 +6,9 @@ class Assignment < ActiveRecord::Base
     get_worker_project_table do |worker, project|
         assignment = worker.get_assignment project, year, week 
         if assignment.nil?
-          assignment = Assignment.new
+          assignment = Assignment.new :from_year => year, :from_week => week, :worker => worker, :project => project
         elsif assignment.from_year != year.to_i || assignment.from_week != week.to_i
-          assignment = Assignment.new(:days_per_week => assignment.days_per_week)
+          assignment = Assignment.new :from_year => year, :from_week => week, :worker => worker, :project => project, :days_per_week => assignment.days_per_week
         end
         [project, assignment]
     end
