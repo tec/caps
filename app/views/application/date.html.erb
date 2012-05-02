@@ -1,4 +1,4 @@
-<table>
+<table class='hidden-forms'>
   <tr>
     <td></td>
     <% @projects.each do |project| %>
@@ -10,7 +10,7 @@
     <tr>
       <td><%= worker.name %></td>
       <% @projects.each do |project| %>
-        <td>
+        <td class='value'>
           <%= content_tag :span, 
                           @assignment_days[worker][project], 
                           :id => "w#{worker.id}_p#{project.id}_label", 
@@ -21,7 +21,7 @@
                           :class => "assignment_form" %>
         </td>
       <% end %>
-      <td>
+      <td class='value'>
         <%= @projects.inject(0){|sum,project| sum + @assignment_days[worker][project]} %>/
         <%= worker.get_available_days @year, @week %>
       </td>
@@ -30,7 +30,7 @@
   <tr>
     <td>Total Assignments / Workload</td>
     <% @projects.each do |project| %>
-      <td>
+      <td class='value'>
         <%= @workers.inject(0){|sum,worker| sum + @assignment_days[worker][project]} %>/
         <%= project.get_work_days @year, @week %>
       </td>
