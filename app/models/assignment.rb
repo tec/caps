@@ -1,7 +1,7 @@
 class Assignment < ActiveRecord::Base
   belongs_to :worker
   belongs_to :project
-  
+
   def self.get_assignments year, week
     get_worker_project_table do |worker, project|
         assignment = worker.get_assignment project, year, week 
@@ -13,12 +13,14 @@ class Assignment < ActiveRecord::Base
         [project, assignment]
     end
   end
+
   def self.get_assignment_days year, week
     get_worker_project_table do |worker, project| 
         assignment = worker.get_assignment project, year, week 
         [project, assignment.present? ? assignment.days_per_week : 0]
     end
   end
+
   def self.get_worker_project_table
     Hash[Worker.all.map do | worker |
       [worker,
@@ -26,5 +28,32 @@ class Assignment < ActiveRecord::Base
            yield worker, project
       end]]
     end]
+  end
+
+  def previous_days
+     previous_week = Date.commercial(self.from_year, self.from_week, 1) - 1.week
+     previous_assignment = self.worker.get_assignment self.project, previous_week.cwyear, previous_week.cweek
+     previous_assignment.present? ? previous_assignment.days_per_week : 0
+  end
+
+  def update_or_delete_days_per_week attributes
+    previous_days_per_week = self.previous_days
+    if previous_days_per_week == attributes[:days_per_week].to_i
+      self.destroy
+    else
+      update_attributes attributes
+    end
+  end
+
+  def update_or_delete attributes
+    if  (attributes[:from_year].nil?  || attributes[:from_year].to_i  == self.from_year) &&
+        (attributes[:from_week].nil?  || attributes[:from_week].to_i  == self.from_week) &&
+        (attributes[:worker_id].nil?  || attributes[:worker_id].to_i  == self.worker_id) &&
+        (attributes[:project_id].nil? || attributes[:project_id].to_i == self.project_id) &&
+        attributes[:days_per_week].present? && attributes[:days_per_week] != self.days_per_week
+      update_or_delete_days_per_week attributes
+    else
+      update_attributes attributes
+    end
   end
 end

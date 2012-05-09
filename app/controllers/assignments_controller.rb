@@ -61,10 +61,16 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
 
     respond_to do |format|
-      if @assignment.update_attributes(params[:assignment])
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully updated.' }
-        format.json { head :no_content }
-        format.js 
+      if @assignment.update_or_delete(params[:assignment])
+        if @assignment.destroyed?
+          format.html { redirect_to Assignment.new, notice: 'Assignment was successfully deleted.' }
+          format.json { head :no_content } # json not tested; should it redirect?
+          format.js 
+        else
+          format.html { redirect_to @assignment, notice: 'Assignment was successfully updated.' }
+          format.json { head :no_content }
+          format.js 
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }
