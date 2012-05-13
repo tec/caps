@@ -31,12 +31,6 @@ class Assignment < ActiveRecord::Base
     end]
   end
 
-  def previous_days
-     previous_week = Date.commercial(self.from_year, self.from_week, 1) - 1.week
-     previous_assignment = self.worker.get_assignment self.project, previous_week.cwyear, previous_week.cweek
-     previous_assignment.present? ? previous_assignment.days_per_week : 0
-  end
-
   def update_or_delete_days_per_week attributes
     previous_days_per_week = self.previous_days
     if previous_days_per_week == attributes[:days_per_week].to_i

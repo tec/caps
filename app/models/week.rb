@@ -36,7 +36,7 @@ module Week
     pre = pre.last
   end
 
-  def previous_days_per_week
+  def previous_days
     pre = self.previous
     pre.respond_to?(:days_per_week) ? pre.days_per_week : 0
   end
