@@ -1,4 +1,5 @@
 class Assignment < ActiveRecord::Base
+  include Week
   belongs_to :worker
   belongs_to :project
 
