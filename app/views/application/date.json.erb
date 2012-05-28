@@ -23,7 +23,7 @@
           Project.all.collect { |project|
             "\n      \"#{project.id}\": #{@assignment_days[worker][project]}" 
           }.join(",").html_safe +
-        "}"
+        "\n    }"
       }.join(",").html_safe %>
   }
 }
