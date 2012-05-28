@@ -24,7 +24,7 @@
       Worker.all.collect { |worker|
         "\"#{worker.id}\": {" + 
           Project.all.collect { |project|
-            "\"#{project.id}\": #{@assignments[worker][project]}" 
+            "\"#{project.id}\": #{@assignment_days[worker][project]}" 
           }.join(',').html_safe +
         "}"
       }.join(',').html_safe
