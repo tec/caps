@@ -1,33 +1,29 @@
 {
   "year" : <%= @year %>,
   "week" : <%= @week %>,
-  "workers":[
-    <%= Worker.all.collect { |worker|
-      %{  
-      { "id":"#{worker.id}",
-        "name":"#{worker.name}",
-        "availability":#{worker.get_available_days(@year, @week)}
-      } }
-    }.join(',').html_safe %>
+  "workers":[<%= 
+    Worker.all.collect { |worker| %{
+    { "id":"#{worker.id}",
+      "name":"#{worker.name}",
+      "availability":#{worker.get_available_days(@year, @week)}
+    }}
+    }.join(",").html_safe %>
   ],
-  "projects":[
-    <%= Project.all.collect { |project|
-      %{  
-      { "id":"#{project.id}",
-        "name":"#{project.name}",
-        "workload":#{project.get_work_days(@year, @week)}
-      } }
-    }.join(',').html_safe %>
+  "projects":[<%=
+    Project.all.collect { |project| %{
+    { "id":"#{project.id}",
+      "name":"#{project.name}",
+      "workload":#{project.get_work_days(@year, @week)}
+    }}
+    }.join(",").html_safe %>
   ],
-  "assignments":{
-    <%= 
+  "assignments":{<%= 
       Worker.all.collect { |worker|
-        "\"#{worker.id}\": {" + 
+        "\n    \"#{worker.id}\": {" + 
           Project.all.collect { |project|
-            "\"#{project.id}\": #{@assignment_days[worker][project]}" 
-          }.join(',').html_safe +
+            "\n      \"#{project.id}\": #{@assignment_days[worker][project]}" 
+          }.join(",").html_safe +
         "}"
-      }.join(',').html_safe
-    %>
+      }.join(",").html_safe %>
   }
 }
