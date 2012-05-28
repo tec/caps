@@ -9,8 +9,15 @@ table {
         select {
           width: 100%;
         }
+        &.total {
+          text-align:center;
+        }
         &.value {
           text-align:center;
+          cursor: pointer;
+          &:hover {
+            background: url(/edit.png) no-repeat right;
+          }
         }
       }
     }

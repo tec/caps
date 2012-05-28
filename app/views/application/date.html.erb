@@ -21,7 +21,7 @@
                           :class => "assignment_form" %>
         </td>
       <% end %>
-      <td class='value'>
+      <td class='total'>
         <%= @projects.inject(0){|sum,project| sum + @assignment_days[worker][project]} %>/
         <%= worker.get_available_days @year, @week %>
       </td>
@@ -30,7 +30,7 @@
   <tr>
     <td>Total Assignments / Workload</td>
     <% @projects.each do |project| %>
-      <td class='value'>
+      <td class='total'>
         <%= @workers.inject(0){|sum,worker| sum + @assignment_days[worker][project]} %>/
         <%= project.get_work_days @year, @week %>
       </td>

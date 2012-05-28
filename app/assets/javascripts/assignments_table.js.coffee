@@ -11,13 +11,11 @@ $ ->
   hideForms = ->
     $(label).show()
     $(form).hide()
-    $(label).parent().css 'cursor', 'pointer'
     true
 
   showForm = (cell) ->
     $(cell).children(label).hide()
     $(cell).children(form).show()
-    $(cell).css 'cursor', 'auto'
     false
 
   # show the form when a table cell is clicked
