@@ -13,3 +13,10 @@ two:
   from_week: 1
   from_year: 2012
   days_per_week: 4
+
+three:
+  worker: tino
+  project: symfony
+  from_week: 5
+  from_year: 2012
+  days_per_week: 6
