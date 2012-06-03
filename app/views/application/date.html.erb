@@ -7,34 +7,44 @@
     <td>Total Assignments / Availability</td>
   </tr>
   <% @workers.each do |worker| %>
-    <tr>
+    <%= content_tag :tr, :class => "worker_#{worker.id}" do %>
       <td><%= worker.name %></td>
       <% @projects.each do |project| %>
-        <td class='value'>
+        <%= content_tag :td, :class => "value project_#{project.id}" do %>
           <%= content_tag :span, 
-                          @assignment_days[worker][project], 
-                          :id => "w#{worker.id}_p#{project.id}_label", 
+                          @assignment_days[worker][project],
+                          :id => "w#{worker.id}_p#{project.id}_label",
                           :class => "assignment_label" %>
           <%= content_tag :span, 
-                          render("assignments/form_days_only", :assignment => @assignments[worker][project]), 
-                          :id => "w#{worker.id}_p#{project.id}_form", 
+                          render("assignments/form_days_only", :assignment => @assignments[worker][project]),
+                          :id => "w#{worker.id}_p#{project.id}_form",
                           :class => "assignment_form" %>
-        </td>
+        <% end # td %>
       <% end %>
-      <td class='total'>
-        <%= @projects.inject(0){|sum,project| sum + @assignment_days[worker][project]} %>/
-        <%= worker.get_available_days @year, @week %>
+      <td class='total worker_total'>
+        <span class='total'>
+          <%= @projects.inject(0){|sum,project| sum + @assignment_days[worker][project]} %>
+        </span>
+        /
+        <span class='availabilities'>
+          <%= worker.get_available_days @year, @week %>
+        </span>
       </td>
-    </tr>
-  <% end %>
+      <% end # tr %>
+  <% end # each worker %>
   <tr>
     <td>Total Assignments / Workload</td>
     <% @projects.each do |project| %>
-      <td class='total'>
-        <%= @workers.inject(0){|sum,worker| sum + @assignment_days[worker][project]} %>/
-        <%= project.get_work_days @year, @week %>
-      </td>
-    <% end %>
+      <%= content_tag :td, :class => "total project_total project_#{project.id}" do %>
+        <span class='total'>
+          <%= @workers.inject(0){|sum,worker| sum + @assignment_days[worker][project]} %>
+        </span>
+        /
+        <span class='workloads'>
+          <%= project.get_work_days @year, @week %>
+        </span>
+      <% end # td %>
+    <% end # each project %>
     <td></td>
   </tr>
 </table>

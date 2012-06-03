@@ -25,4 +25,15 @@
     input.attr({'name': '_method', 'type': 'hidden', 'value': 'put'})
     $(form_id).children('div').first().append input
 <% end %>
+
+  <%# recalculate column and row sums for total assignments %>
+  worker_total = 0
+  $('.worker_' + worker + ' .assignment_label').each( -> 
+    worker_total += parseInt($(this).html()))
+  $('.worker_' + worker + ' span.total').html(worker_total)
+
+  project_total = 0
+  $('.project_' + project + ' .assignment_label').each( -> 
+    project_total += parseInt($(this).html()))
+  $('.project_' + project + ' span.total').html(project_total)
 )()
