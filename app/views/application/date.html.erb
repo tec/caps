@@ -4,7 +4,7 @@
     <% @projects.each do |project| %>
       <td><%= project.name %></td>
     <% end %>
-    <td>Total Assignments / Availability</td>
+    <td><%= t :total_assignments %> / <%= t :availability %></td>
   </tr>
   <% @workers.each do |worker| %>
     <%= content_tag :tr, :class => "worker_#{worker.id}" do %>
@@ -41,7 +41,7 @@
       <% end # tr %>
   <% end # each worker %>
   <tr>
-    <td>Total Assignments / Workload</td>
+    <td><%= t :total_assignments %> / <%= t :workload %></td>
     <% @projects.each do |project| %>
       <%= content_tag :td, :class => "total project_total project_#{project.id}" do %>
         <span id='project_<%= project.id %>_label' class='workload_label'>
