@@ -19,6 +19,7 @@
                           render("assignments/form_days_only", :assignment => @assignments[worker][project]),
                           :id => "w#{worker.id}_p#{project.id}_form",
                           :class => "assignment_form" %>
+          <span class='assignment_loading'><img alt='loading symbol' src='/loading.gif'></img></span>
         <% end # td %>
       <% end %>
       <td class='total worker_total'>
