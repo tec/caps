@@ -20,5 +20,7 @@ class ApplicationController < ActionController::Base
     @projects = Project.all
     @assignment_days = Assignment.get_assignment_days @year, @week
     @assignments = Assignment.get_assignments @year, @week
+    @workloads = Workload.get_workloads @year, @week
+    @availabilities = Availability.get_availabilities @year, @week
   end
 end

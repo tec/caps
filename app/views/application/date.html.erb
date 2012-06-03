@@ -33,9 +33,9 @@
           </span>
         </span>
         <%= content_tag :span, 
-                        render("workers/availability_form", :worker => worker),
-                        :id => "worker_#{worker.id}_form",
-                        :class => "availability_form" %>
+              render("workers/availability_form", :availability => @availabilities[worker]),
+              :id => "worker_#{worker.id}_form",
+              :class => "availability_form" %>
         <span class='availability_loading'><img alt='loading symbol' src='/loading.gif'></img></span>
       </td>
       <% end # tr %>
@@ -53,10 +53,10 @@
             <%= project.get_work_days @year, @week %>
           </span>
         </span>
-        <%= content_tag :span, 
-                        render("project/workload_form", :project => project),
-                        :id => "project_#{project.id}_form",
-                        :class => "project_form" %>
+        <%= content_tag :span,
+              render("projects/workload_form", :workload => @workloads[project]),
+              :id => "project_#{project.id}_form",
+              :class => "project_form" %>
         <span class='workload_loading'><img alt='loading symbol' src='/loading.gif'></img></span>
       <% end # td %>
     <% end # each project %>
