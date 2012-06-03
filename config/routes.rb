@@ -1,4 +1,8 @@
 CapacityPlanning::Application.routes.draw do
+  resources :workers
+
+  resources :projects
+
   resources :assignments
 
   # The priority is based upon order of creation:
