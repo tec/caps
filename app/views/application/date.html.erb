@@ -23,7 +23,7 @@
         <% end # td %>
       <% end %>
       <td class='total worker_total'>
-        <span class='availability_label'>
+        <span id='worker_<%= worker.id %>_label' class='availability_label'>
           <span class='total'>
             <%= @projects.inject(0){|sum,project| sum + @assignment_days[worker][project]} %>
           </span>
@@ -44,7 +44,7 @@
     <td>Total Assignments / Workload</td>
     <% @projects.each do |project| %>
       <%= content_tag :td, :class => "total project_total project_#{project.id}" do %>
-        <span class='workload_label'>
+        <span id='project_<%= project.id %>_label' class='workload_label'>
           <span class='total'>
             <%= @workers.inject(0){|sum,worker| sum + @assignment_days[worker][project]} %>
           </span>
@@ -56,7 +56,7 @@
         <%= content_tag :span,
               render("projects/workload_form", :workload => @workloads[project]),
               :id => "project_#{project.id}_form",
-              :class => "project_form" %>
+              :class => "workload_form" %>
         <span class='workload_loading'><img alt='loading symbol' src='/loading.gif'></img></span>
       <% end # td %>
     <% end # each project %>
