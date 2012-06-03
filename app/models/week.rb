@@ -40,4 +40,27 @@ module Week
     pre = self.previous
     pre.respond_to?(:days_per_week) ? pre.days_per_week : 0
   end
+
+  def update_or_delete attributes
+    if  (attributes[:from_year].nil?  || attributes[:from_year].to_i  == self.from_year) &&
+        (attributes[:from_week].nil?  || attributes[:from_week].to_i  == self.from_week) &&
+        (attributes[:worker_id].nil?  || attributes[:worker_id].to_i  == self.worker_id) &&
+        (attributes[:project_id].nil? || attributes[:project_id].to_i == self.project_id) &&
+        attributes[:days_per_week].present? && attributes[:days_per_week] != self.days_per_week
+      update_or_delete_days_per_week attributes
+    else
+      update_attributes attributes
+    end
+  end
+
+  protected
+
+  def update_or_delete_days_per_week attributes
+    previous_days_per_week = self.previous_days
+    if previous_days_per_week == attributes[:days_per_week].to_i
+      self.destroy
+    else
+      update_attributes attributes
+    end
+  end
 end
