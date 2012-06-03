@@ -1,0 +1,6 @@
+<%= form_for(worker, :remote => true) do |f| %>
+  <%= f.select :days_per_week, 0..5, {}, {:class => 'submittable'} %>
+  <%= f.hidden_field :from_year %>
+  <%= f.hidden_field :from_week %>
+  <%= f.submit :submit, {:class => 'availability_button'} %>
+<% end %>

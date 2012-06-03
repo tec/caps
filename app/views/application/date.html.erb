@@ -23,13 +23,20 @@
         <% end # td %>
       <% end %>
       <td class='total worker_total'>
-        <span class='total'>
-          <%= @projects.inject(0){|sum,project| sum + @assignment_days[worker][project]} %>
+        <span class='availability_label'>
+          <span class='total'>
+            <%= @projects.inject(0){|sum,project| sum + @assignment_days[worker][project]} %>
+          </span>
+          /
+          <span class='availabilities'>
+            <%= worker.get_available_days @year, @week %>
+          </span>
         </span>
-        /
-        <span class='availabilities'>
-          <%= worker.get_available_days @year, @week %>
-        </span>
+        <%= content_tag :span, 
+                        render("workers/availability_form", :worker => worker),
+                        :id => "worker_#{worker.id}_form",
+                        :class => "availability_form" %>
+        <span class='availability_loading'><img alt='loading symbol' src='/loading.gif'></img></span>
       </td>
       <% end # tr %>
   <% end # each worker %>
@@ -37,13 +44,20 @@
     <td>Total Assignments / Workload</td>
     <% @projects.each do |project| %>
       <%= content_tag :td, :class => "total project_total project_#{project.id}" do %>
-        <span class='total'>
-          <%= @workers.inject(0){|sum,worker| sum + @assignment_days[worker][project]} %>
+        <span class='workload_label'>
+          <span class='total'>
+            <%= @workers.inject(0){|sum,worker| sum + @assignment_days[worker][project]} %>
+          </span>
+          /
+          <span class='workloads'>
+            <%= project.get_work_days @year, @week %>
+          </span>
         </span>
-        /
-        <span class='workloads'>
-          <%= project.get_work_days @year, @week %>
-        </span>
+        <%= content_tag :span, 
+                        render("project/workload_form", :project => project),
+                        :id => "project_#{project.id}_form",
+                        :class => "project_form" %>
+        <span class='workload_loading'><img alt='loading symbol' src='/loading.gif'></img></span>
       <% end # td %>
     <% end # each project %>
     <td></td>
