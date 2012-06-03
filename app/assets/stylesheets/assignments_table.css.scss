@@ -9,9 +9,7 @@ table {
         select {
           width: 100%;
         }
-        &.total {
-          text-align:center;
-        }
+        &.total,
         &.value {
           text-align:center;
           cursor: pointer;
@@ -20,6 +18,12 @@ table {
           }
         }
       }
+    }
+    .warning {
+      color: orange;
+    }
+    .error {
+      color: red;
     }
   }
 }
