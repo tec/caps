@@ -3,14 +3,13 @@ $('.submittable').live 'change', ->
   $(this).parents('form:first').submit()
 
 # hide forms and only show them on click
-$ ->
-  label   = '.assignment_label'
-  form    = '.assignment_form'
-  loading = '.assignment_loading'
-  button  = '.assignment_button'
+ajaxyModelForm = (model) ->
+  label   = '.' + model + '_label'
+  form    = '.' + model + '_form'
+  loading = '.' + model + '_loading'
+  button  = '.' + model + '_button'
 
   showLabels = ->
-    console.log 'show'
     $(label).show()
     $(form).hide()
     $(loading).hide()
@@ -40,3 +39,9 @@ $ ->
   # hide forms and buttons on load
   $(button).hide()
   showLabels()
+
+
+$ ->
+  ajaxyModelForm 'assignment'
+  ajaxyModelForm 'workload'
+  ajaxyModelForm 'availability'
