@@ -31,15 +31,6 @@ class Assignment < ActiveRecord::Base
     end]
   end
 
-  def update_or_delete_days_per_week attributes
-    previous_days_per_week = self.previous_days
-    if previous_days_per_week == attributes[:days_per_week].to_i
-      self.destroy
-    else
-      update_attributes attributes
-    end
-  end
-
   def update_or_delete attributes
     if  (attributes[:from_year].nil?  || attributes[:from_year].to_i  == self.from_year) &&
         (attributes[:from_week].nil?  || attributes[:from_week].to_i  == self.from_week) &&
@@ -51,4 +42,16 @@ class Assignment < ActiveRecord::Base
       update_attributes attributes
     end
   end
+
+  protected
+
+  def update_or_delete_days_per_week attributes
+    previous_days_per_week = self.previous_days
+    if previous_days_per_week == attributes[:days_per_week].to_i
+      self.destroy
+    else
+      update_attributes attributes
+    end
+  end
+
 end
