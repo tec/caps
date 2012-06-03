@@ -1,0 +1,21 @@
+<h1>Listing workloads</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @workloads.each do |workload| %>
+  <tr>
+    <td><%= link_to 'Show', workload %></td>
+    <td><%= link_to 'Edit', edit_workload_path(workload) %></td>
+    <td><%= link_to 'Destroy', workload, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Workload', new_workload_path %>

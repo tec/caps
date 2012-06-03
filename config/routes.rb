@@ -1,4 +1,8 @@
 CapacityPlanning::Application.routes.draw do
+  resources :workloads
+
+  resources :availabilities
+
   resources :workers
 
   resources :projects
