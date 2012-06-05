@@ -33,7 +33,7 @@
           </span>
         </span>
         <%= content_tag :span, 
-              render("workers/availability_form", :availability => @availabilities[worker]),
+              render("availabilities/form_days_only", :availability => @availabilities[worker]),
               :id => "worker_#{worker.id}_form",
               :class => "availability_form" %>
         <span class='availability_loading'><img alt='loading symbol' src='/loading.gif'></img></span>
@@ -54,7 +54,7 @@
           </span>
         </span>
         <%= content_tag :span,
-              render("projects/workload_form", :workload => @workloads[project]),
+              render("workloads/form_days_only", :workload => @workloads[project]),
               :id => "project_#{project.id}_form",
               :class => "workload_form" %>
         <span class='workload_loading'><img alt='loading symbol' src='/loading.gif'></img></span>
