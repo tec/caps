@@ -50,23 +50,20 @@ $ ->
 
 # update css classes of workload an availability cells after an update
 updateTotalClasses = ->
-  $('.workload_label').each ->
-    totalSpan = $(this).children '.total'
-    total     = parseInt totalSpan.html()
-    workload  = parseInt $(this).children('.workloads').html()
-    totalSpan.removeClass('error')
-    totalSpan.removeClass('warning')
-    if total > workload
-      totalSpan.addClass('error')
-    else if total < workload
-      totalSpan.addClass('warning')
-  $('.availability_label').each ->
+  $('.workload_label, .availability_label').each ->
     totalSpan    = $(this).children '.total'
     total        = parseInt totalSpan.html()
     availability = parseInt $(this).children('.availabilities').html()
+    workload     = parseInt $(this).children('.workloads').html()
     totalSpan.removeClass('error')
     totalSpan.removeClass('warning')
-    if total > availability
-      totalSpan.addClass('warning')
-    else if total < availability
-      totalSpan.addClass('error')
+    unless isNaN(workload) 
+      if total < workload
+        totalSpan.addClass('error')
+      else if total > workload
+        totalSpan.addClass('warning')
+    unless isNaN(availability) 
+      if total < availability
+        totalSpan.addClass('warning')
+      else if total > availability
+        totalSpan.addClass('error')
