@@ -1,5 +1,5 @@
 <%= form_for(availability, :remote => true) do |f| %>
-  <%= f.select :days_per_week, 0..5, {}, {:class => 'submittable'} %>
+  <%= f.select :days_per_week, Week::DAYS_PER_WEEK, {}, {:class => 'submittable'} %>
   <%= f.hidden_field :from_year %>
   <%= f.hidden_field :from_week %>
   <%= f.hidden_field :worker_id %>
