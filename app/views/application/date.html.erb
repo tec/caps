@@ -1,66 +1,43 @@
 <table class='hidden-forms'>
   <tr>
     <td></td>
+    <td class='thead total'><%= t :total_assignments %> /<br><%= t :availability %></td>
     <% @projects.each do |project| %>
-      <td><%= project.name %></td>
+      <td class='thead project'><%= project.name %></td>
     <% end %>
-    <td><%= t :total_assignments %> / <%= t :availability %></td>
+    <td class='thead add addproject'>+</td>
+  </tr>
+  <tr>
+    <td class='thead total'><%= t :total_assignments %> /<br><%= t :workload %></td>
+    <td></td>
+    <% @projects.each do |project| %>
+      <%= content_tag :td, :class => "total project_total project_#{project.id} value" do %>
+        <%= render :partial => 'cell_workload', :locals => {:project => project} %>
+      <% end # td %>
+    <% end # each project %>
+    <td class='add total'></td>
   </tr>
   <% @workers.each do |worker| %>
     <%= content_tag :tr, :class => "worker_#{worker.id}" do %>
-      <td><%= worker.name %></td>
+      <td class='thead worker'><%= worker.name %></td>
+      <td class='total worker_total value'>
+        <%= render :partial => 'cell_availability', :locals => {:worker => worker} %>
+      </td>
       <% @projects.each do |project| %>
         <%= content_tag :td, :class => "value project_#{project.id}" do %>
-          <%= content_tag :span, 
-                          @assignment_days[worker][project],
-                          :id => "w#{worker.id}_p#{project.id}_label",
-                          :class => "assignment_label" %>
-          <%= content_tag :span, 
-                          render("assignments/form_days_only", :assignment => @assignments[worker][project]),
-                          :id => "w#{worker.id}_p#{project.id}_form",
-                          :class => "assignment_form" %>
-          <span class='assignment_loading'><img alt='loading symbol' src='/loading.gif'></img></span>
+          <%= render :partial => 'cell_assignment', :locals => {:worker => worker, :project => project} %>
         <% end # td %>
       <% end %>
-      <td class='total worker_total'>
-        <span id='worker_<%= worker.id %>_label' class='availability_label'>
-          <span class='total'>
-            <%= @projects.inject(0){|sum,project| sum + @assignment_days[worker][project]} %>
-          </span>
-          /
-          <span class='availabilities'>
-            <%= worker.get_available_days @year, @week %>
-          </span>
-        </span>
-        <%= content_tag :span, 
-              render("availabilities/form_days_only", :availability => @availabilities[worker]),
-              :id => "worker_#{worker.id}_form",
-              :class => "availability_form" %>
-        <span class='availability_loading'><img alt='loading symbol' src='/loading.gif'></img></span>
-      </td>
-      <% end # tr %>
+      <td class='add value'></td>
+    <% end # tr %>
   <% end # each worker %>
   <tr>
-    <td><%= t :total_assignments %> / <%= t :workload %></td>
+    <td class="add thead addworker">+</td>
+    <td class="add total"></td>
     <% @projects.each do |project| %>
-      <%= content_tag :td, :class => "total project_total project_#{project.id}" do %>
-        <span id='project_<%= project.id %>_label' class='workload_label'>
-          <span class='total'>
-            <%= @workers.inject(0){|sum,worker| sum + @assignment_days[worker][project]} %>
-          </span>
-          /
-          <span class='workloads'>
-            <%= project.get_work_days @year, @week %>
-          </span>
-        </span>
-        <%= content_tag :span,
-              render("workloads/form_days_only", :workload => @workloads[project]),
-              :id => "project_#{project.id}_form",
-              :class => "workload_form" %>
-        <span class='workload_loading'><img alt='loading symbol' src='/loading.gif'></img></span>
-      <% end # td %>
-    <% end # each project %>
-    <td></td>
+      <td class="add value"></td>
+    <% end %>
+    <td class="add"></td>
   </tr>
 </table>
 

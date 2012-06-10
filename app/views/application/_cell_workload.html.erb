@@ -1,0 +1,14 @@
+<span id='project_<%= project.id %>_label' class='workload_label'>
+  <span class='total'>
+    <%= @workers.inject(0){|sum,worker| sum + @assignment_days[worker][project]} %>
+  </span>
+  /
+  <span class='workloads'>
+    <%= project.get_work_days @year, @week %>
+  </span>
+</span>
+<%= content_tag :span,
+      render("workloads/form_days_only", :workload => @workloads[project]),
+      :id => "project_#{project.id}_form",
+      :class => "workload_form" %>
+<span class='workload_loading'><img alt='loading symbol' src='/loading.gif'></img></span>

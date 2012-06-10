@@ -4,17 +4,27 @@ table {
       height: 40px; 
       min-height: 40px; 
       td {
+        background-color: #ddd;
         min-width: 50px;
         padding: 5px;
         select {
           width: 100%;
         }
-        &.total,
         &.value {
+          background-color: #eee;
           text-align:center;
           cursor: pointer;
+          &.total {
+            background-color: #ddd;
+          }
           &:hover {
             background: url(/edit.png) no-repeat right;
+          }
+        }
+        &.add {
+          background-color: #fff;
+          &.thead {
+            background-color: #ddd;
           }
         }
       }
