@@ -1,5 +1,5 @@
 # submittable form elements auto submit the form
-$('.submittable').live 'change', -> 
+$('input.submittable').live 'change', -> 
   $(this).parents('form:first').submit()
 
 # hide forms and only show them on click
@@ -19,6 +19,7 @@ ajaxyModelForm = (model) ->
   showForm = (cell) ->
     $(cell).children(label).hide()
     $(cell).children(form).show()
+    $(cell).children(form).children('input.submittable').focus()
     $(cell).children(loading).hide()
     false
 
@@ -46,6 +47,8 @@ $ ->
   ajaxyModelForm 'assignment'
   ajaxyModelForm 'workload'
   ajaxyModelForm 'availability'
+  ajaxyModelForm 'worker'
+  ajaxyModelForm 'project'
   updateTotalClasses()
 
 # update css classes of workload an availability cells after an update

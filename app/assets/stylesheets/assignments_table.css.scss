@@ -12,11 +12,13 @@ table {
         }
         &.value {
           background-color: #eee;
-          text-align:center;
-          cursor: pointer;
           &.total {
             background-color: #ddd;
           }
+        }
+        &.editable {
+          text-align:center;
+          cursor: pointer;
           &:hover {
             background: url(/edit.png) no-repeat right;
           }

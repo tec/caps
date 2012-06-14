@@ -1,0 +1,10 @@
+<span id='worker_<%= worker.id %>_label' class='worker_label'>
+  <span class='worker'>
+    <%= worker.new_record? ? "+" : worker.name %>
+  </span>
+</span>
+<%= content_tag :span,
+      render("workers/form_names_only", :worker => worker),
+      :id => "worker_#{worker.id}_form",
+      :class => "worker_form" %>
+<span class='worker_loading'><img alt='loading symbol' src='/loading.gif'></img></span>

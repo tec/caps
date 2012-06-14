@@ -46,9 +46,11 @@ class WorkersController < ApplicationController
       if @worker.save
         format.html { redirect_to @worker, notice: 'Worker was successfully created.' }
         format.json { render json: @worker, status: :created, location: @worker }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @worker.errors, status: :unprocessable_entity }
+        format.js { render json: @worker.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,9 +64,11 @@ class WorkersController < ApplicationController
       if @worker.update_attributes(params[:worker])
         format.html { redirect_to @worker, notice: 'Worker was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @worker.errors, status: :unprocessable_entity }
+        format.js { render json: @worker.errors, status: :unprocessable_entity }
       end
     end
   end
