@@ -75,4 +75,7 @@ CapacityPlanning::Application.routes.draw do
     :constraints => { :abbr => /last|current|next/ },
     :via => :get,
     :defaults => { :format => 'html' }
+  match '/' => "application#index",
+    :via => :get,
+    :defaults => { :format => 'html' }
 end

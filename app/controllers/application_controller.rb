@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   
   respond_to :html, :json
 
+  def index
+    redirect_to "/current"
+  end
+
   def abbr
     abbr = params[:abbr]
     date = DateTime.now
