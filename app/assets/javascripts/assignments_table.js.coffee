@@ -1,5 +1,5 @@
 # submittable form elements auto submit the form
-$('input.submittable').live 'change', -> 
+$('.submittable').live 'change', -> 
   $(this).parents('form:first').submit()
 
 # hide forms and only show them on click
