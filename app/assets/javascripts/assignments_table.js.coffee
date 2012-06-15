@@ -17,6 +17,7 @@ ajaxyModelForm = (model) ->
     true
 
   showForm = (cell) ->
+    showLabels()
     $(cell).children(label).hide()
     $(cell).children(form).show()
     $(cell).children(form).children('input.submittable').focus()
