@@ -20,6 +20,9 @@ class ApplicationController < ActionController::Base
   def date
     @year = params[:year]
     @week = params[:week]
+    @monday        = Week.get_monday @year, @week
+    @next_week     = Week.next_week @year, @week
+    @previous_week = Week.previous_week @year, @week
     @workers     = Worker.all
     @projects    = Project.all
     @new_worker  = Worker.new

@@ -5,3 +5,9 @@ en:
   total_assignments: "Total Assignments"
   availability: "Availability"
   workload: "Workload"
+  layout:
+    showing_week_of_year: "Showing week %{week} of year %{year}."
+    week_starts_at: "This work week starts on Monday, %{date}"
+    today_is: "Today is %{weekday}, %{date}"
+    next_week: "Next week"
+    previous_week: "Previous week"

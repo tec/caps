@@ -7,8 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="haswidthofcontents">
+    <%= render "layouts/header" %>
+    <%= yield %>
+  </div>
 </body>
 </html>

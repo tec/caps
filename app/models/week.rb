@@ -9,6 +9,10 @@ module Week
     end
   end  
 
+  def self.get_monday year, week
+    Date.commercial(year.to_i, week.to_i, 1)
+  end
+
   # returns true if object responds to from_year, from_week and attributes
   def is_week_model?
     return self.respond_to?(:from_year) &&
@@ -19,16 +23,24 @@ module Week
       self.attributes.respond_to?(:to_a)
   end
 
+  def self.previous_week year, week
+    previous_week = Week.get_monday(year, week) - 1.week
+    {:year => previous_week.cwyear, :week => previous_week.cweek}
+  end
+
+  def self.next_week year, week
+    next_week = Week.get_monday(year, week) + 1.week
+    {:year => next_week.cwyear, :week => next_week.cweek}
+  end
+
   def previous_week
     return nil unless self.is_week_model?
-    previous_week = Date.commercial(self.from_year, self.from_week, 1) - 1.week
-    {:year => previous_week.cwyear, :week => previous_week.cweek}
+    Week.previous_week self.from_year, self.from_week 
   end
 
   def next_week
     return nil unless self.is_week_model?
-    next_week = Date.commercial(self.from_year, self.from_week, 1) + 1.week
-    {:year => next_week.cwyear, :week => next_week.cweek}
+    Week.next_week self.from_year, self.from_week
   end
 
   # find the last previous item where all belongs_to relations have the same targets 

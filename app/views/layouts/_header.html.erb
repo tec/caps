@@ -1,0 +1,19 @@
+<h1>Caps</h1>
+<h2>Capacity Planner</h2>
+<div class="navigation">
+  <div class="left">
+    <%= link_to t(:'layout.previous_week'),
+                url_for(:year => @previous_week[:year], :week => @previous_week[:week]) %>
+  </div>
+  <div class="center">
+    <div><%= t :'layout.showing_week_of_year', {:year => @year, :week => @week, :date => @date} %></div>
+    <div><%= t :'layout.week_starts_at', :date => l(@monday, :format => :long) %></div>
+    <div><%= t :'layout.today_is',
+               { :weekday => l(Date.today, :format => "%A"),
+                 :date => l(Date.today, :format => :long)} %></div>
+  </div>
+  <div class="right">
+    <%= link_to t(:'layout.next_week'),
+                url_for(:year => @next_week[:year], :week => @next_week[:week]) %>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+.haswidthofcontents {
+  /* http://foohack.com/2007/11/cross-browser-support-for-inline-block-styling/ */
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+}
+
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+}
+h2 {
+  text-align: center;
+  font-variant: small-caps;
+}
+.navigation {
+  text-align: center;
+  position: relative;
+  margin: 20px;
+  .left, .center, .right {
+    display: inline-block;
+  }
+  .left, .right {
+    position: absolute;
+  }
+  .left {
+    left: 0px;
+  }
+  .right {
+    right: 0px;
+  }
+}
