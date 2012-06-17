@@ -1,4 +1,4 @@
 <%= form_for(worker, :remote => true) do |f| %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, {:class => 'submittable'} %>
   <%= f.submit :submit, {:class => 'worker_button'} %>
 <% end %>
