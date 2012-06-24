@@ -1,7 +1,12 @@
 class Worker < ActiveRecord::Base
-
   has_many :availabilities
   has_many :assignments
+
+  default_scope where(:deleted_from_year => nil)
+
+  def self.deleted
+    self.unscoped.where(arel_table[:deleted_from_year].not_eq nil)
+  end
 
   def get_available_days year, week
     availability = get_availability( year, week )
