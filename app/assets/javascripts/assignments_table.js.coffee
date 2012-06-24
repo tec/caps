@@ -1,6 +1,18 @@
+
+hide_submit_buttons = true
+
 # submittable form elements auto submit the form
 $('.submittable').live 'change', -> 
   $(this).parents('form:first').submit()
+
+all = label: [], form: [], loading: [], button: []
+
+showLabels = ->
+  $(all.label).show()
+  $(all.form).hide()
+  $(all.loading).hide()
+  updateTotalClasses()
+  true
 
 # hide forms and only show them on click
 ajaxyModelForm = (model) ->
@@ -8,13 +20,10 @@ ajaxyModelForm = (model) ->
   form    = '.' + model + '_form'
   loading = '.' + model + '_loading'
   button  = '.' + model + '_button'
-
-  showLabels = ->
-    $(label).show()
-    $(form).hide()
-    $(loading).hide()
-    updateTotalClasses()
-    true
+  all.label   = $.merge all.label, $(label)
+  all.form    = $.merge all.form, $(form)
+  all.loading = $.merge all.loading, $(loading)
+  all.button  = $.merge all.button, $(button)
 
   showForm = (cell) ->
     showLabels()
@@ -34,23 +43,27 @@ ajaxyModelForm = (model) ->
   # show the form when a table cell is clicked
   $(label).parent().on 'click', -> showForm(this)
 
-  # hide forms 
-  $('body').on 'click', -> showLabels()
+  # hide forms on certain events
   $(form).on('submit', -> showLoading($(this).parent()))
   $(form).on('ajax:complete', -> showLabels())
 
-  # hide forms and buttons on load
-  $(button).hide()
-  showLabels()
-
-
+# on load...
 $ ->
+  # ...make forms ajaxy
   ajaxyModelForm 'assignment'
   ajaxyModelForm 'workload'
   ajaxyModelForm 'availability'
   ajaxyModelForm 'worker'
   ajaxyModelForm 'project'
+  # ...update colors on total column and total row
   updateTotalClasses()
+  # ...hide forms and buttons
+  showLabels()
+  $(all.button).hide() if hide_submit_buttons
+
+# hide all forms whereever someone clicks
+$(document).on 'click', -> showLabels()
+
 
 # update css classes of workload an availability cells after an update
 updateTotalClasses = ->
