@@ -16,7 +16,7 @@ They are always defined for a specific week of the year and are automatically in
 Caps is not a fully fledged capacity planner but enough for my and maybe a few others' needs. 
 If you miss a certain feature feel free to open issues or pull requests.
 
-To see a sample installation try https://caps-tec.rhcloud.com 
+To see a sample installation try [caps on rhcloud](https://caps-tec.rhcloud.com) 
 I'm not regularly making sure it's running there but from time to time I push the latest revision to this domain.
 
 Installation
@@ -79,7 +79,7 @@ and finally, start the server:
 bundle exec rails server
 </code></pre>
 
-and go to http://localhost:3000/current or http://localhost:3000/next.json
+and go to <http://localhost:3000/current> or <http://localhost:3000/next.json>
 
 
 License
@@ -91,4 +91,4 @@ Fork it and do whatever you want. Merge requests, feature ideas, bug reports, th
 Copyright
 ---------
 
-Silvan T. Golega, http://golega.de
+[Silvan T. Golega](http://golega.de)
