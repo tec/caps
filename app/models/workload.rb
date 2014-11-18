@@ -1,6 +1,7 @@
 class Workload < ActiveRecord::Base
   include Week
   belongs_to :project
+  validates_numericality_of :days_per_week, :greater_than_or_equal_to => 0
 
   def self.get_workloads year, week
     get_projects do |project|

@@ -2,6 +2,7 @@ class Assignment < ActiveRecord::Base
   include Week
   belongs_to :worker
   belongs_to :project
+  validates_numericality_of :days_per_week, :greater_than_or_equal_to => Week::DAYS_PER_WEEK.min, :less_than_or_equal_to => Week::DAYS_PER_WEEK.max
 
   def self.get_assignments year, week
     get_worker_project_table do |worker, project|

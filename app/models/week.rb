@@ -5,7 +5,6 @@ module Week
   DAYS_PER_WEEK = 0..5
   def self.included(base)
     base.class_eval do
-      validates_numericality_of :days_per_week, :greater_than_or_equal_to => Week::DAYS_PER_WEEK.min, :less_than_or_equal_to => Week::DAYS_PER_WEEK.max
     end
   end  
 

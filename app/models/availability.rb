@@ -1,6 +1,7 @@
 class Availability < ActiveRecord::Base
   include Week
   belongs_to :worker
+  validates_numericality_of :days_per_week, :greater_than_or_equal_to => Week::DAYS_PER_WEEK.min, :less_than_or_equal_to => Week::DAYS_PER_WEEK.max
 
   def self.get_availabilities year, week
     get_workers do |worker|
