@@ -1,7 +1,7 @@
 <%= content_tag :span, 
                 @assignment_days[worker][project],
                 :id => "w#{worker.id}_p#{project.id}_label",
-                :class => "assignment_label" %>
+                :class => "assignment_label #{ "no-assignment" if @assignment_days[worker][project] == 0 }" %>
 <%= content_tag :span, 
                 render("assignments/form_days_only", :assignment => @assignments[worker][project]),
                 :id => "w#{worker.id}_p#{project.id}_form",
